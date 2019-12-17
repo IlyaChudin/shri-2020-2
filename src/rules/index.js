@@ -6,6 +6,7 @@ import warning_text_sizes_should_be_equal from "./warning-text-sizes-should-be-e
 import warning_invalid_button_size from "./warning-invalid-button-size";
 import warning_invalid_button_position from "./warning-invalid-button-position";
 import warning_invalid_placeholder_size from "./warning-invalid-placeholder-size";
+import grid_too_much_marketing_blocks from "./grid-too-much-marketing-blocks";
 
 export default [
   text_several_h1,
@@ -14,5 +15,6 @@ export default [
   warning_text_sizes_should_be_equal,
   warning_invalid_button_size,
   warning_invalid_button_position,
-  warning_invalid_placeholder_size
+  warning_invalid_placeholder_size,
+  grid_too_much_marketing_blocks
 ];

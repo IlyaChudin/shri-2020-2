@@ -2897,6 +2897,25 @@
 
 	  return undefined;
 	}
+	function getElemMod(node, key) {
+	  if (node.type === "Object") {
+	    var mods = node.children.find(function (x) {
+	      return x.key.value === "elemMods";
+	    });
+
+	    if (mods && mods.value && mods.value.children) {
+	      var mod = mods.value.children.find(function (x) {
+	        return x.key.value === key;
+	      });
+
+	      if (mod) {
+	        return mod.value.value;
+	      }
+	    }
+	  }
+
+	  return undefined;
+	}
 
 	var error = (function (code, text, loc) {
 	  return {
@@ -3163,8 +3182,54 @@
 	  };
 	});
 
+	var code$7 = "GRID.TOO_MUCH_MARKETING_BLOCKS";
+	var text$7 = "Маркетинговые блоки занимают больше половины от всех колонок блока grid.";
+	var marketingBlocks = ["commercial", "offer"];
+	var grid_too_much_marketing_blocks = (function (report) {
+	  var scopes = [];
+	  var marketingColumnsCount = 0;
+	  return {
+	    enter: function enter(node) {
+	      var blockName = getProperty(node, "block");
+	      var elemName = getProperty(node, "elem");
+
+	      if (blockName === "grid") {
+	        if (!elemName) {
+	          var size = getMod(node, "m-columns");
+	          scopes.push({
+	            root: node,
+	            size: size,
+	            fractionSize: 0
+	          });
+	        } else if (elemName === "fraction" && scopes.length) {
+	          var _size = getElemMod(node, "m-col");
+
+	          var scope = scopes[scopes.length - 1];
+	          scope.fractionSize = Number(_size);
+	        }
+	      } else if (marketingBlocks.includes(blockName) && !elemName && scopes.length) {
+	        var _scope = scopes[scopes.length - 1];
+	        marketingColumnsCount += _scope.fractionSize;
+	      }
+	    },
+	    leave: function leave(node) {
+	      var _scopes = scopes[scopes.length - 1],
+	          root = _scopes.root,
+	          size = _scopes.size;
+
+	      if (node === root) {
+	        if (marketingColumnsCount >= size * 0.5) {
+	          report(error(code$7, text$7, root.loc));
+	        }
+
+	        scopes.pop();
+	      }
+	    }
+	  };
+	});
+
 	/* eslint-disable camelcase */
-	var rules = [text_several_h1, text_invalid_h2_position, text_invalid_h3_position, warning_text_sizes_should_be_equal, warning_invalid_button_size, warning_invalid_button_position, warning_invalid_placeholder_size];
+	var rules = [text_several_h1, text_invalid_h2_position, text_invalid_h3_position, warning_text_sizes_should_be_equal, warning_invalid_button_size, warning_invalid_button_position, warning_invalid_placeholder_size, grid_too_much_marketing_blocks];
 
 	var index = (function (json) {
 	  return linter(json, rules);
