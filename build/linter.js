@@ -3013,8 +3013,158 @@
 	  };
 	});
 
+	var code$3 = "WARNING.TEXT_SIZES_SHOULD_BE_EQUAL";
+	var text$3 = "Все тексты в блоке warning должны быть одного размера.";
+	var warning_text_sizes_should_be_equal = (function (report) {
+	  var scopes = [];
+	  return {
+	    enter: function enter(node) {
+	      var blockName = getProperty(node, "block");
+
+	      if (blockName === "warning") {
+	        scopes.push({
+	          root: node,
+	          size: undefined
+	        });
+	      } else if (blockName === "text" && scopes.length) {
+	        var mod = getMod(node, "size");
+
+	        if (mod) {
+	          var scope = scopes[scopes.length - 1];
+
+	          if (!scope.size) {
+	            scope.size = mod;
+	          } else if (mod !== scope.size) {
+	            report(error(code$3, text$3, scope.root.loc));
+	          }
+	        }
+	      }
+	    },
+	    leave: function leave(node) {
+	      var root = scopes[scopes.length - 1].root;
+
+	      if (node === root) {
+	        scopes.pop();
+	      }
+	    }
+	  };
+	});
+
+	var code$4 = "WARNING.INVALID_BUTTON_SIZE";
+	var text$4 = "Размер кнопки блока warning должен быть на 1 шаг больше эталонного.";
+	var sizes = ["s", "m", "l", "xl", "xxl"];
+	var warning_invalid_button_size = (function (report) {
+	  var scopes = [];
+	  return {
+	    enter: function enter(node) {
+	      var blockName = getProperty(node, "block");
+
+	      if (blockName === "warning") {
+	        scopes.push({
+	          root: node,
+	          size: undefined
+	        });
+	      } else if (blockName === "text" && scopes.length) {
+	        var textSize = getMod(node, "size");
+
+	        if (textSize) {
+	          var scope = scopes[scopes.length - 1];
+
+	          if (!scope.size) {
+	            scope.size = textSize;
+	          }
+	        }
+	      } else if (blockName === "button" && scopes.length) {
+	        var buttonSize = getMod(node, "size");
+
+	        if (buttonSize) {
+	          var _scope = scopes[scopes.length - 1];
+
+	          if (_scope.size === sizes[sizes.length - 1] || buttonSize !== sizes[sizes.indexOf(_scope.size) + 1]) {
+	            report(error(code$4, text$4, node.loc));
+	          }
+	        }
+	      }
+	    },
+	    leave: function leave(node) {
+	      var root = scopes[scopes.length - 1].root;
+
+	      if (node === root) {
+	        scopes.pop();
+	      }
+	    }
+	  };
+	});
+
+	var code$5 = "WARNING.INVALID_BUTTON_POSITION";
+	var text$5 = "Блок button в блоке warning не может находиться перед блоком placeholder.";
+	var warning_invalid_button_position = (function (report) {
+	  var scopes = [];
+	  return {
+	    enter: function enter(node) {
+	      var blockName = getProperty(node, "block");
+
+	      if (blockName === "warning") {
+	        scopes.push({
+	          root: node,
+	          buttons: []
+	        });
+	      } else if (scopes.length) {
+	        var buttons = scopes[scopes.length - 1].buttons;
+
+	        if (blockName === "button") {
+	          buttons.push(node);
+	        } else if (blockName === "placeholder") {
+	          buttons.forEach(function (x) {
+	            report(error(code$5, text$5, x.loc));
+	          });
+	          buttons.length = 0;
+	        }
+	      }
+	    },
+	    leave: function leave(node) {
+	      var root = scopes[scopes.length - 1].root;
+
+	      if (node === root) {
+	        scopes.pop();
+	      }
+	    }
+	  };
+	});
+
+	var code$6 = "WARNING.INVALID_PLACEHOLDER_SIZE";
+	var text$6 = "Допустимые размеры для блока placeholder в блоке warning: s, m, l.";
+	var sizes$1 = ["s", "m", "l"];
+	var warning_invalid_placeholder_size = (function (report) {
+	  var scopes = [];
+	  return {
+	    enter: function enter(node) {
+	      var blockName = getProperty(node, "block");
+
+	      if (blockName === "warning") {
+	        scopes.push({
+	          root: node
+	        });
+	      } else if (blockName === "placeholder" && scopes.length) {
+	        var size = getMod(node, "size");
+
+	        if (size && !sizes$1.includes(size)) {
+	          report(error(code$6, text$6, node.loc));
+	        }
+	      }
+	    },
+	    leave: function leave(node) {
+	      var root = scopes[scopes.length - 1].root;
+
+	      if (node === root) {
+	        scopes.pop();
+	      }
+	    }
+	  };
+	});
+
 	/* eslint-disable camelcase */
-	var rules = [text_several_h1, text_invalid_h2_position, text_invalid_h3_position];
+	var rules = [text_several_h1, text_invalid_h2_position, text_invalid_h3_position, warning_text_sizes_should_be_equal, warning_invalid_button_size, warning_invalid_button_position, warning_invalid_placeholder_size];
 
 	var index = (function (json) {
 	  return linter(json, rules);
