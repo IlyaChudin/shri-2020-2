@@ -1,3 +1,6 @@
+import linter from "./linter";
+import rules from "./rules";
+
 export default json => {
-  return json;
+  return linter(json, rules);
 };

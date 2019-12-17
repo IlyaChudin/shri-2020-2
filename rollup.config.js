@@ -8,8 +8,7 @@ export default {
     file: "build/linter.js",
     format: "umd",
     name: "lint",
-    extend: true,
-    sourcemap: true
+    extend: true
   },
   plugins: [resolve(), commonjs(), babel()],
   watch: {

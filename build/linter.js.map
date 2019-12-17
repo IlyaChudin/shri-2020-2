@@ -1,1 +1,0 @@
-{"version":3,"file":"linter.js","sources":["../src/index.js"],"sourcesContent":["export default json => {\n  return json;\n};\n"],"names":["json"],"mappings":";;;;;;AAAA,eAAe,UAAAA,IAAI,EAAI;EACrB,SAAOA,IAAP;EACD,CAFD;;;;;;;;"}
