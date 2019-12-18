@@ -3196,7 +3196,6 @@
 	var marketingBlocks = ["commercial", "offer"];
 	var gridTooMuchMarketingBlocks = (function (report) {
 	  var scopes = [];
-	  var marketingColumnsCount = 0;
 	  return {
 	    enter: function enter(node) {
 	      var blockName = getProperty(node, "block");
@@ -3208,7 +3207,8 @@
 	          scopes.push({
 	            root: node,
 	            size: size,
-	            fractionSize: 0
+	            fractionSize: 0,
+	            marketingColumnsCount: 0
 	          });
 	        } else if (elemName === "fraction" && scopes.length) {
 	          var _size = getProperty(node, "elemMods", "m-col");
@@ -3218,17 +3218,18 @@
 	        }
 	      } else if (marketingBlocks.includes(blockName) && !elemName && scopes.length) {
 	        var _scope = scopes[scopes.length - 1];
-	        marketingColumnsCount += _scope.fractionSize;
+	        _scope.marketingColumnsCount += _scope.fractionSize;
 	      }
 	    },
 	    leave: function leave(node) {
 	      if (scopes.length) {
 	        var _scopes = scopes[scopes.length - 1],
 	            root = _scopes.root,
-	            size = _scopes.size;
+	            size = _scopes.size,
+	            marketingColumnsCount = _scopes.marketingColumnsCount;
 
 	        if (node === root) {
-	          if (marketingColumnsCount >= size * 0.5) {
+	          if (marketingColumnsCount > size * 0.5) {
 	            report(error(code$7, text$7, root.loc));
 	          }
 

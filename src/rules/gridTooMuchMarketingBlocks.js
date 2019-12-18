@@ -7,7 +7,6 @@ const marketingBlocks = ["commercial", "offer"];
 
 export default report => {
   const scopes = [];
-  let marketingColumnsCount = 0;
   return {
     enter: node => {
       const blockName = getProperty(node, "block");
@@ -15,7 +14,7 @@ export default report => {
       if (blockName === "grid") {
         if (!elemName) {
           const size = getProperty(node, "mods", "m-columns");
-          scopes.push({ root: node, size, fractionSize: 0 });
+          scopes.push({ root: node, size, fractionSize: 0, marketingColumnsCount: 0 });
         } else if (elemName === "fraction" && scopes.length) {
           const size = getProperty(node, "elemMods", "m-col");
           const scope = scopes[scopes.length - 1];
@@ -23,14 +22,14 @@ export default report => {
         }
       } else if (marketingBlocks.includes(blockName) && !elemName && scopes.length) {
         const scope = scopes[scopes.length - 1];
-        marketingColumnsCount += scope.fractionSize;
+        scope.marketingColumnsCount += scope.fractionSize;
       }
     },
     leave: node => {
       if (scopes.length) {
-        const { root, size } = scopes[scopes.length - 1];
+        const { root, size, marketingColumnsCount } = scopes[scopes.length - 1];
         if (node === root) {
-          if (marketingColumnsCount >= size * 0.5) {
+          if (marketingColumnsCount > size * 0.5) {
             report(error(code, text, root.loc));
           }
           scopes.pop();
