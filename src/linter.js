@@ -24,5 +24,5 @@ export default (json, rules) => {
 
     return errors;
   }
-  return [];
+  return undefined;
 };

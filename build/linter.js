@@ -2862,7 +2862,7 @@
 	    return errors;
 	  }
 
-	  return [];
+	  return undefined;
 	});
 
 	function _typeof(obj) {
@@ -3243,7 +3243,7 @@
 	var rules = [textSeveralH1, textInvalidH2Position, textInvalidH3Position, warningTextSizesShouldBeEqual, warningInvalidButtonSize, warningInvalidButtonPosition, warningInvalidPlaceholderSize, gridTooMuchMarketingBlocks];
 
 	var index = (function (json) {
-	  return linter(json, rules);
+	  return linter(json, rules) || [];
 	});
 
 	return index;
