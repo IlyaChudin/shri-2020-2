@@ -1,6 +1,6 @@
 import linter from "../../src/linter";
 import rule from "../../src/rules/grid-too-much-marketing-blocks";
-import error from "../helpers/error";
+import error from "../error";
 
 describe("grid-too-much-marketing-blocks", () => {
   test("should return error when ", () => {

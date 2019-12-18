@@ -1,4 +1,4 @@
-import { getMod, getProperty } from "../helpers/ast";
+import { getProperty } from "../helpers/ast";
 import error from "../helpers/error";
 
 const code = "TEXT.SEVERAL_H1";
@@ -8,7 +8,7 @@ export default report => {
   let found = false;
   return {
     enter: node => {
-      if (getProperty(node, "block") === "text" && getMod(node, "type") === "h1") {
+      if (getProperty(node, "block") === "text" && getProperty(node, "mods", "type") === "h1") {
         if (found) {
           report(error(code, text, node.loc));
         } else {

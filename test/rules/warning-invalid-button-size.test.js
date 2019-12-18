@@ -1,6 +1,6 @@
 import linter from "../../src/linter";
 import rule from "../../src/rules/warning-invalid-button-size";
-import error from "../helpers/error";
+import error from "../error";
 
 describe("warning-invalid-button-size", () => {
   test("should return error when button size not one step larger than text size", () => {

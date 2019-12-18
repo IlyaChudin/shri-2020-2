@@ -1,6 +1,6 @@
 import linter from "../../src/linter";
 import rule from "../../src/rules/text-invalid-h3-position";
-import error from "../helpers/error";
+import error from "../error";
 
 describe("text-invalid-h3-position", () => {
   test("should return error when h3 appears before h2", () => {

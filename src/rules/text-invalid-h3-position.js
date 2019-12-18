@@ -1,4 +1,4 @@
-import { getMod, getProperty } from "../helpers/ast";
+import { getProperty } from "../helpers/ast";
 import error from "../helpers/error";
 
 const code = "TEXT.INVALID_H3_POSITION";
@@ -10,7 +10,7 @@ export default report => {
     enter: node => {
       const blockName = getProperty(node, "block");
       if (blockName === "text") {
-        const type = getMod(node, "type");
+        const type = getProperty(node, "mods", "type");
         const { headers } = scopes[scopes.length - 1];
         if (type === "h3") {
           headers.push(node);

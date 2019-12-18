@@ -1,6 +1,6 @@
 import linter from "../../src/linter";
 import rule from "../../src/rules/warning-invalid-button-position";
-import error from "../helpers/error";
+import error from "../error";
 
 describe("warning-invalid-button-position", () => {
   test("should return error when button appears before placeholder", () => {

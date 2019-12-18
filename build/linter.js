@@ -2865,56 +2865,53 @@
 	  return [];
 	});
 
-	function getProperty(node, key) {
-	  if (node.type === "Object") {
-	    var prop = node.children.find(function (x) {
+	function _typeof(obj) {
+	  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+	    _typeof = function (obj) {
+	      return typeof obj;
+	    };
+	  } else {
+	    _typeof = function (obj) {
+	      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+	    };
+	  }
+
+	  return _typeof(obj);
+	}
+
+	// eslint-disable-next-line import/prefer-default-export
+	function getProperty(node) {
+	  var _arguments = arguments;
+	  var object = node;
+
+	  var _loop = function _loop(i) {
+	    if (object.type !== "Object") {
+	      return {
+	        v: undefined
+	      };
+	    }
+
+	    var key = i + 1 < 1 || _arguments.length <= i + 1 ? undefined : _arguments[i + 1];
+	    var prop = object.children.find(function (x) {
 	      return x.key.value === key;
 	    });
 
-	    if (prop) {
-	      return prop.value.value;
+	    if (prop === undefined) {
+	      return {
+	        v: undefined
+	      };
 	    }
+
+	    object = prop.value;
+	  };
+
+	  for (var i = 0; i < (arguments.length <= 1 ? 0 : arguments.length - 1); i += 1) {
+	    var _ret = _loop(i);
+
+	    if (_typeof(_ret) === "object") return _ret.v;
 	  }
 
-	  return undefined;
-	}
-	function getMod(node, key) {
-	  if (node.type === "Object") {
-	    var mods = node.children.find(function (x) {
-	      return x.key.value === "mods";
-	    });
-
-	    if (mods && mods.value && mods.value.children) {
-	      var mod = mods.value.children.find(function (x) {
-	        return x.key.value === key;
-	      });
-
-	      if (mod) {
-	        return mod.value.value;
-	      }
-	    }
-	  }
-
-	  return undefined;
-	}
-	function getElemMod(node, key) {
-	  if (node.type === "Object") {
-	    var mods = node.children.find(function (x) {
-	      return x.key.value === "elemMods";
-	    });
-
-	    if (mods && mods.value && mods.value.children) {
-	      var mod = mods.value.children.find(function (x) {
-	        return x.key.value === key;
-	      });
-
-	      if (mod) {
-	        return mod.value.value;
-	      }
-	    }
-	  }
-
-	  return undefined;
+	  return object.value;
 	}
 
 	var error = (function (code, text, loc) {
@@ -2940,7 +2937,7 @@
 	  var found = false;
 	  return {
 	    enter: function enter(node) {
-	      if (getProperty(node, "block") === "text" && getMod(node, "type") === "h1") {
+	      if (getProperty(node, "block") === "text" && getProperty(node, "mods", "type") === "h1") {
 	        if (found) {
 	          report(error(code, text, node.loc));
 	        } else {
@@ -2964,7 +2961,7 @@
 	      var blockName = getProperty(node, "block");
 
 	      if (blockName === "text") {
-	        var type = getMod(node, "type");
+	        var type = getProperty(node, "mods", "type");
 	        var headers = scopes[scopes.length - 1].headers;
 
 	        if (type === "h2") {
@@ -3004,7 +3001,7 @@
 	      var blockName = getProperty(node, "block");
 
 	      if (blockName === "text") {
-	        var type = getMod(node, "type");
+	        var type = getProperty(node, "mods", "type");
 	        var headers = scopes[scopes.length - 1].headers;
 
 	        if (type === "h3") {
@@ -3046,7 +3043,7 @@
 	          size: undefined
 	        });
 	      } else if (blockName === "text" && scopes.length) {
-	        var mod = getMod(node, "size");
+	        var mod = getProperty(node, "mods", "size");
 
 	        if (mod) {
 	          var scope = scopes[scopes.length - 1];
@@ -3084,7 +3081,7 @@
 	          size: undefined
 	        });
 	      } else if (blockName === "text" && scopes.length) {
-	        var textSize = getMod(node, "size");
+	        var textSize = getProperty(node, "mods", "size");
 
 	        if (textSize) {
 	          var scope = scopes[scopes.length - 1];
@@ -3094,7 +3091,7 @@
 	          }
 	        }
 	      } else if (blockName === "button" && scopes.length) {
-	        var buttonSize = getMod(node, "size");
+	        var buttonSize = getProperty(node, "mods", "size");
 
 	        if (buttonSize) {
 	          var _scope = scopes[scopes.length - 1];
@@ -3165,7 +3162,7 @@
 	          root: node
 	        });
 	      } else if (blockName === "placeholder" && scopes.length) {
-	        var size = getMod(node, "size");
+	        var size = getProperty(node, "mods", "size");
 
 	        if (size && !sizes$1.includes(size)) {
 	          report(error(code$6, text$6, node.loc));
@@ -3195,14 +3192,14 @@
 
 	      if (blockName === "grid") {
 	        if (!elemName) {
-	          var size = getMod(node, "m-columns");
+	          var size = getProperty(node, "mods", "m-columns");
 	          scopes.push({
 	            root: node,
 	            size: size,
 	            fractionSize: 0
 	          });
 	        } else if (elemName === "fraction" && scopes.length) {
-	          var _size = getElemMod(node, "m-col");
+	          var _size = getProperty(node, "elemMods", "m-col");
 
 	          var scope = scopes[scopes.length - 1];
 	          scope.fractionSize = Number(_size);

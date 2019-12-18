@@ -1,6 +1,6 @@
 import linter from "../../src/linter";
 import rule from "../../src/rules/text-several-h1";
-import error from "../helpers/error";
+import error from "../error";
 
 describe("text-several-h1", () => {
   test("should return error when more than one h1 on page", () => {

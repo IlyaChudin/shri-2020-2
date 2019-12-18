@@ -1,4 +1,4 @@
-import { getMod, getProperty } from "../helpers/ast";
+import { getProperty } from "../helpers/ast";
 import error from "../helpers/error";
 
 const code = "WARNING.INVALID_PLACEHOLDER_SIZE";
@@ -13,7 +13,7 @@ export default report => {
       if (blockName === "warning") {
         scopes.push({ root: node });
       } else if (blockName === "placeholder" && scopes.length) {
-        const size = getMod(node, "size");
+        const size = getProperty(node, "mods", "size");
         if (size && !sizes.includes(size)) {
           report(error(code, text, node.loc));
         }

@@ -1,6 +1,6 @@
 import linter from "../../src/linter";
 import rule from "../../src/rules/warning-text-sizes-should-be-equal";
-import error from "../helpers/error";
+import error from "../error";
 
 describe("warning-text-sizes-should-be-equal", () => {
   test("should return error when text sizes are not equal", () => {

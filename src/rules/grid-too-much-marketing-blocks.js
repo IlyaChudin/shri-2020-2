@@ -1,4 +1,4 @@
-import { getElemMod, getMod, getProperty } from "../helpers/ast";
+import { getProperty } from "../helpers/ast";
 import error from "../helpers/error";
 
 const code = "GRID.TOO_MUCH_MARKETING_BLOCKS";
@@ -14,10 +14,10 @@ export default report => {
       const elemName = getProperty(node, "elem");
       if (blockName === "grid") {
         if (!elemName) {
-          const size = getMod(node, "m-columns");
+          const size = getProperty(node, "mods", "m-columns");
           scopes.push({ root: node, size, fractionSize: 0 });
         } else if (elemName === "fraction" && scopes.length) {
-          const size = getElemMod(node, "m-col");
+          const size = getProperty(node, "elemMods", "m-col");
           const scope = scopes[scopes.length - 1];
           scope.fractionSize = Number(size);
         }

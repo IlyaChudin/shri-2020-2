@@ -1,4 +1,4 @@
-import { getMod, getProperty } from "../helpers/ast";
+import { getProperty } from "../helpers/ast";
 import error from "../helpers/error";
 
 const code = "WARNING.TEXT_SIZES_SHOULD_BE_EQUAL";
@@ -12,7 +12,7 @@ export default report => {
       if (blockName === "warning") {
         scopes.push({ root: node, size: undefined });
       } else if (blockName === "text" && scopes.length) {
-        const mod = getMod(node, "size");
+        const mod = getProperty(node, "mods", "size");
         if (mod) {
           const scope = scopes[scopes.length - 1];
           if (!scope.size) {

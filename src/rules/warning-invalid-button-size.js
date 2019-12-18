@@ -1,4 +1,4 @@
-import { getMod, getProperty } from "../helpers/ast";
+import { getProperty } from "../helpers/ast";
 import error from "../helpers/error";
 
 const code = "WARNING.INVALID_BUTTON_SIZE";
@@ -13,7 +13,7 @@ export default report => {
       if (blockName === "warning") {
         scopes.push({ root: node, size: undefined });
       } else if (blockName === "text" && scopes.length) {
-        const textSize = getMod(node, "size");
+        const textSize = getProperty(node, "mods", "size");
         if (textSize) {
           const scope = scopes[scopes.length - 1];
           if (!scope.size) {
@@ -21,7 +21,7 @@ export default report => {
           }
         }
       } else if (blockName === "button" && scopes.length) {
-        const buttonSize = getMod(node, "size");
+        const buttonSize = getProperty(node, "mods", "size");
         if (buttonSize) {
           const scope = scopes[scopes.length - 1];
           if (scope.size === sizes[sizes.length - 1] || buttonSize !== sizes[sizes.indexOf(scope.size) + 1]) {
