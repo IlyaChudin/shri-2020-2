@@ -1,5 +1,5 @@
 import linter from "../../src/linter";
-import rule from "../../src/rules/warning-text-sizes-should-be-equal";
+import rule from "../../src/rules/warningTextSizesShouldBeEqual";
 import error from "../error";
 
 describe("warning-text-sizes-should-be-equal", () => {

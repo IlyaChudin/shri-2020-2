@@ -1,5 +1,5 @@
 import linter from "../../src/linter";
-import rule from "../../src/rules/text-several-h1";
+import rule from "../../src/rules/textSeveralH1";
 import error from "../error";
 
 describe("text-several-h1", () => {

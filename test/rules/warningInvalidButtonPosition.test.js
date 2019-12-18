@@ -1,5 +1,5 @@
 import linter from "../../src/linter";
-import rule from "../../src/rules/warning-invalid-button-position";
+import rule from "../../src/rules/warningInvalidButtonPosition";
 import error from "../error";
 
 describe("warning-invalid-button-position", () => {

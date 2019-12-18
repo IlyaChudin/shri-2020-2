@@ -1,5 +1,5 @@
 import linter from "../../src/linter";
-import rule from "../../src/rules/text-invalid-h2-position";
+import rule from "../../src/rules/textInvalidH2Position";
 import error from "../error";
 
 describe("text-invalid-h2-position", () => {

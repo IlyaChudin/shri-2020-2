@@ -1,5 +1,5 @@
 import linter from "../../src/linter";
-import rule from "../../src/rules/warning-invalid-placeholder-size";
+import rule from "../../src/rules/warningInvalidPlaceholderSize";
 import error from "../error";
 
 describe("warning-invalid-placeholder-size", () => {

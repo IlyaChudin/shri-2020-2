@@ -1,5 +1,5 @@
 import linter from "../../src/linter";
-import rule from "../../src/rules/grid-too-much-marketing-blocks";
+import rule from "../../src/rules/gridTooMuchMarketingBlocks";
 import error from "../error";
 
 describe("grid-too-much-marketing-blocks", () => {

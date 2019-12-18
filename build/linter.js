@@ -2933,7 +2933,7 @@
 
 	var code = "TEXT.SEVERAL_H1";
 	var text = "Заголовок первого уровня на странице должен быть единственным.";
-	var text_several_h1 = (function (report) {
+	var textSeveralH1 = (function (report) {
 	  var found = false;
 	  return {
 	    enter: function enter(node) {
@@ -2951,7 +2951,7 @@
 
 	var code$1 = "TEXT.INVALID_H2_POSITION";
 	var text$1 = "Заголовок второго уровня не может находиться перед заголовком первого уровня.";
-	var text_invalid_h2_position = (function (report) {
+	var textInvalidH2Position = (function (report) {
 	  var scopes = [{
 	    root: undefined,
 	    headers: []
@@ -2991,7 +2991,7 @@
 
 	var code$2 = "TEXT.INVALID_H3_POSITION";
 	var text$2 = "Заголовок третьего уровня не может находиться перед заголовком второго уровня.";
-	var text_invalid_h3_position = (function (report) {
+	var textInvalidH3Position = (function (report) {
 	  var scopes = [{
 	    root: undefined,
 	    headers: []
@@ -3031,7 +3031,7 @@
 
 	var code$3 = "WARNING.TEXT_SIZES_SHOULD_BE_EQUAL";
 	var text$3 = "Все тексты в блоке warning должны быть одного размера.";
-	var warning_text_sizes_should_be_equal = (function (report) {
+	var warningTextSizesShouldBeEqual = (function (report) {
 	  var scopes = [];
 	  return {
 	    enter: function enter(node) {
@@ -3069,7 +3069,7 @@
 	var code$4 = "WARNING.INVALID_BUTTON_SIZE";
 	var text$4 = "Размер кнопки блока warning должен быть на 1 шаг больше эталонного.";
 	var sizes = ["s", "m", "l", "xl", "xxl"];
-	var warning_invalid_button_size = (function (report) {
+	var warningInvalidButtonSize = (function (report) {
 	  var scopes = [];
 	  return {
 	    enter: function enter(node) {
@@ -3114,7 +3114,7 @@
 
 	var code$5 = "WARNING.INVALID_BUTTON_POSITION";
 	var text$5 = "Блок button в блоке warning не может находиться перед блоком placeholder.";
-	var warning_invalid_button_position = (function (report) {
+	var warningInvalidButtonPosition = (function (report) {
 	  var scopes = [];
 	  return {
 	    enter: function enter(node) {
@@ -3151,7 +3151,7 @@
 	var code$6 = "WARNING.INVALID_PLACEHOLDER_SIZE";
 	var text$6 = "Допустимые размеры для блока placeholder в блоке warning: s, m, l.";
 	var sizes$1 = ["s", "m", "l"];
-	var warning_invalid_placeholder_size = (function (report) {
+	var warningInvalidPlaceholderSize = (function (report) {
 	  var scopes = [];
 	  return {
 	    enter: function enter(node) {
@@ -3182,7 +3182,7 @@
 	var code$7 = "GRID.TOO_MUCH_MARKETING_BLOCKS";
 	var text$7 = "Маркетинговые блоки занимают больше половины от всех колонок блока grid.";
 	var marketingBlocks = ["commercial", "offer"];
-	var grid_too_much_marketing_blocks = (function (report) {
+	var gridTooMuchMarketingBlocks = (function (report) {
 	  var scopes = [];
 	  var marketingColumnsCount = 0;
 	  return {
@@ -3225,8 +3225,7 @@
 	  };
 	});
 
-	/* eslint-disable camelcase */
-	var rules = [text_several_h1, text_invalid_h2_position, text_invalid_h3_position, warning_text_sizes_should_be_equal, warning_invalid_button_size, warning_invalid_button_position, warning_invalid_placeholder_size, grid_too_much_marketing_blocks];
+	var rules = [textSeveralH1, textInvalidH2Position, textInvalidH3Position, warningTextSizesShouldBeEqual, warningInvalidButtonSize, warningInvalidButtonPosition, warningInvalidPlaceholderSize, gridTooMuchMarketingBlocks];
 
 	var index = (function (json) {
 	  return linter(json, rules);
