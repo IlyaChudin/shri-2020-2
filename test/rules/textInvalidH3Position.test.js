@@ -2,7 +2,7 @@ import linter from "../../src/linter";
 import rule from "../../src/rules/textInvalidH3Position";
 import error from "../error";
 
-describe("text-invalid-h3-position", () => {
+describe("textInvalidH3Position", () => {
   test("should return error when h3 appears before h2", () => {
     const json = `[
   {

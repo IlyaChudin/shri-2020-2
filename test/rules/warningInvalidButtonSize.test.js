@@ -2,7 +2,7 @@ import linter from "../../src/linter";
 import rule from "../../src/rules/warningInvalidButtonSize";
 import error from "../error";
 
-describe("warning-invalid-button-size", () => {
+describe("warningInvalidButtonSize", () => {
   test("should return error when button size not one step larger than text size", () => {
     const json = `{
   "block": "warning",

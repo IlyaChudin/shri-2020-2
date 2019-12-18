@@ -2,7 +2,7 @@ import linter from "../../src/linter";
 import rule from "../../src/rules/warningInvalidPlaceholderSize";
 import error from "../error";
 
-describe("warning-invalid-placeholder-size", () => {
+describe("warningInvalidPlaceholderSize", () => {
   test("should return error when placeholder size is not allowed", () => {
     const json = `{
   "block": "warning",

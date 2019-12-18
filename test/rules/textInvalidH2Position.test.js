@@ -2,7 +2,7 @@ import linter from "../../src/linter";
 import rule from "../../src/rules/textInvalidH2Position";
 import error from "../error";
 
-describe("text-invalid-h2-position", () => {
+describe("textInvalidH2Position", () => {
   test("should return error when h2 appears before h1", () => {
     const json = `[
   {

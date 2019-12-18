@@ -2,7 +2,7 @@ import linter from "../../src/linter";
 import rule from "../../src/rules/warningTextSizesShouldBeEqual";
 import error from "../error";
 
-describe("warning-text-sizes-should-be-equal", () => {
+describe("warningTextSizesShouldBeEqual", () => {
   test("should return error when text sizes are not equal", () => {
     const json = `{
   "block": "warning",

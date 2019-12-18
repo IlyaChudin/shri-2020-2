@@ -2,7 +2,7 @@ import linter from "../../src/linter";
 import rule from "../../src/rules/warningInvalidButtonPosition";
 import error from "../error";
 
-describe("warning-invalid-button-position", () => {
+describe("warningInvalidButtonPosition", () => {
   test("should return error when button appears before placeholder", () => {
     const json = `{
   "block": "warning",

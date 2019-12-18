@@ -2,7 +2,7 @@ import linter from "../../src/linter";
 import rule from "../../src/rules/textSeveralH1";
 import error from "../error";
 
-describe("text-several-h1", () => {
+describe("textSeveralH1", () => {
   test("should return error when more than one h1 on page", () => {
     const json = `[
   {
