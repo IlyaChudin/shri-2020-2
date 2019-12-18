@@ -1,4 +1,7 @@
 import lint from "../src";
+import withoutErrors from "./data/withoutErrors.json";
+import withErrors from "./data/withErrors.json";
+import error from "./error";
 
 describe("lint", () => {
   test("should return empty array when passed invalid json", () => {
@@ -20,5 +23,26 @@ describe("lint", () => {
     const result = lint(json);
 
     expect(result.length).toBe(0);
+  });
+
+  test("should return empty array when passed bemjson without lint errors", () => {
+    const json = JSON.stringify(withoutErrors, null, 2);
+
+    const result = lint(json);
+
+    expect(result.length).toBe(0);
+  });
+
+  test("should return empty array when passed bemjson with lint errors", () => {
+    const json = JSON.stringify(withErrors, null, 2);
+    const expected = [
+      error("TEXT.SEVERAL_H1", 258, 29, 272, 30),
+      error("WARNING.INVALID_BUTTON_SIZE", 205, 29, 210, 30),
+      error("GRID.TOO_MUCH_MARKETING_BLOCKS", 61, 13, 448, 14)
+    ];
+
+    const result = lint(json);
+
+    expect(result).toMatchObject(expected);
   });
 });
