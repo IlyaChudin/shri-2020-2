@@ -27,12 +27,14 @@ export default report => {
       }
     },
     leave: node => {
-      const { root, size } = scopes[scopes.length - 1];
-      if (node === root) {
-        if (marketingColumnsCount >= size * 0.5) {
-          report(error(code, text, root.loc));
+      if (scopes.length) {
+        const { root, size } = scopes[scopes.length - 1];
+        if (node === root) {
+          if (marketingColumnsCount >= size * 0.5) {
+            report(error(code, text, root.loc));
+          }
+          scopes.pop();
         }
-        scopes.pop();
       }
     }
   };

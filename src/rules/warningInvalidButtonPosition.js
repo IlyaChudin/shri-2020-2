@@ -24,9 +24,11 @@ export default report => {
       }
     },
     leave: node => {
-      const { root } = scopes[scopes.length - 1];
-      if (node === root) {
-        scopes.pop();
+      if (scopes.length) {
+        const { root } = scopes[scopes.length - 1];
+        if (node === root) {
+          scopes.pop();
+        }
       }
     }
   };

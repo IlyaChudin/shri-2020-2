@@ -2980,10 +2980,12 @@
 	      }
 	    },
 	    leave: function leave(node) {
-	      var root = scopes[scopes.length - 1].root;
+	      if (scopes.length) {
+	        var root = scopes[scopes.length - 1].root;
 
-	      if (node === root) {
-	        scopes.pop();
+	        if (node === root) {
+	          scopes.pop();
+	        }
 	      }
 	    }
 	  };
@@ -3020,10 +3022,12 @@
 	      }
 	    },
 	    leave: function leave(node) {
-	      var root = scopes[scopes.length - 1].root;
+	      if (scopes.length) {
+	        var root = scopes[scopes.length - 1].root;
 
-	      if (node === root) {
-	        scopes.pop();
+	        if (node === root) {
+	          scopes.pop();
+	        }
 	      }
 	    }
 	  };
@@ -3057,10 +3061,12 @@
 	      }
 	    },
 	    leave: function leave(node) {
-	      var root = scopes[scopes.length - 1].root;
+	      if (scopes.length) {
+	        var root = scopes[scopes.length - 1].root;
 
-	      if (node === root) {
-	        scopes.pop();
+	        if (node === root) {
+	          scopes.pop();
+	        }
 	      }
 	    }
 	  };
@@ -3103,10 +3109,12 @@
 	      }
 	    },
 	    leave: function leave(node) {
-	      var root = scopes[scopes.length - 1].root;
+	      if (scopes.length) {
+	        var root = scopes[scopes.length - 1].root;
 
-	      if (node === root) {
-	        scopes.pop();
+	        if (node === root) {
+	          scopes.pop();
+	        }
 	      }
 	    }
 	  };
@@ -3139,10 +3147,12 @@
 	      }
 	    },
 	    leave: function leave(node) {
-	      var root = scopes[scopes.length - 1].root;
+	      if (scopes.length) {
+	        var root = scopes[scopes.length - 1].root;
 
-	      if (node === root) {
-	        scopes.pop();
+	        if (node === root) {
+	          scopes.pop();
+	        }
 	      }
 	    }
 	  };
@@ -3170,10 +3180,12 @@
 	      }
 	    },
 	    leave: function leave(node) {
-	      var root = scopes[scopes.length - 1].root;
+	      if (scopes.length) {
+	        var root = scopes[scopes.length - 1].root;
 
-	      if (node === root) {
-	        scopes.pop();
+	        if (node === root) {
+	          scopes.pop();
+	        }
 	      }
 	    }
 	  };
@@ -3210,16 +3222,18 @@
 	      }
 	    },
 	    leave: function leave(node) {
-	      var _scopes = scopes[scopes.length - 1],
-	          root = _scopes.root,
-	          size = _scopes.size;
+	      if (scopes.length) {
+	        var _scopes = scopes[scopes.length - 1],
+	            root = _scopes.root,
+	            size = _scopes.size;
 
-	      if (node === root) {
-	        if (marketingColumnsCount >= size * 0.5) {
-	          report(error(code$7, text$7, root.loc));
+	        if (node === root) {
+	          if (marketingColumnsCount >= size * 0.5) {
+	            report(error(code$7, text$7, root.loc));
+	          }
+
+	          scopes.pop();
 	        }
-
-	        scopes.pop();
 	      }
 	    }
 	  };
