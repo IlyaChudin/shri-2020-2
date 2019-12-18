@@ -21,7 +21,7 @@ describe("text-several-h1", () => {
     }
   }
 ]`;
-    const expected = [error("TEXT.SEVERAL_H1", 12, 16, 15, 5)];
+    const expected = [error("TEXT.SEVERAL_H1", 12, 16, 15, 6)];
 
     const result = linter(json, [rule]);
 

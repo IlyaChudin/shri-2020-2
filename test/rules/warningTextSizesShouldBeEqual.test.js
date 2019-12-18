@@ -11,7 +11,7 @@ describe("warning-text-sizes-should-be-equal", () => {
     { "block": "text", "mods": { "size": "m" } }
   ]
 }`;
-    const expected = [error("WARNING.TEXT_SIZES_SHOULD_BE_EQUAL", 1, 1, 7, 1)];
+    const expected = [error("WARNING.TEXT_SIZES_SHOULD_BE_EQUAL", 1, 1, 7, 2)];
 
     const result = linter(json, [rule]);
 

@@ -2925,7 +2925,7 @@
 	      },
 	      end: {
 	        line: loc.end.line,
-	        column: loc.end.column - 1
+	        column: loc.end.column
 	      }
 	    }
 	  };

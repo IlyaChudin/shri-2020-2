@@ -10,7 +10,7 @@ describe("warning-invalid-placeholder-size", () => {
     { "block": "placeholder", "mods": { "size": "xl" } }
   ]
 }`;
-    const expected = [error("WARNING.INVALID_PLACEHOLDER_SIZE", 4, 5, 4, 56)];
+    const expected = [error("WARNING.INVALID_PLACEHOLDER_SIZE", 4, 5, 4, 57)];
 
     const result = linter(json, [rule]);
 

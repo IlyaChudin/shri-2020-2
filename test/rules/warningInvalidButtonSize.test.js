@@ -11,7 +11,7 @@ describe("warning-invalid-button-size", () => {
     { "block": "button", "mods": { "size": "s" } }
   ]
 }`;
-    const expected = [error("WARNING.INVALID_BUTTON_SIZE", 5, 5, 5, 50)];
+    const expected = [error("WARNING.INVALID_BUTTON_SIZE", 5, 5, 5, 51)];
 
     const result = linter(json, [rule]);
 

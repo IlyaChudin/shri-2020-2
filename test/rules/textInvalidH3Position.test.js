@@ -88,9 +88,9 @@ describe("text-invalid-h3-position", () => {
   }
 ]`;
     const expected = [
-      error("TEXT.INVALID_H3_POSITION", 5, 7, 10, 7),
-      error("TEXT.INVALID_H3_POSITION", 57, 7, 62, 7),
-      error("TEXT.INVALID_H3_POSITION", 48, 3, 53, 3)
+      error("TEXT.INVALID_H3_POSITION", 5, 7, 10, 8),
+      error("TEXT.INVALID_H3_POSITION", 57, 7, 62, 8),
+      error("TEXT.INVALID_H3_POSITION", 48, 3, 53, 4)
     ];
 
     const result = linter(json, [rule]);

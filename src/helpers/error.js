@@ -9,7 +9,7 @@ export default (code, text, loc) => {
       },
       end: {
         line: loc.end.line,
-        column: loc.end.column - 1
+        column: loc.end.column
       }
     }
   };

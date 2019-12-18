@@ -11,7 +11,7 @@ describe("warning-invalid-button-position", () => {
     { "block": "placeholder", "mods": { "size": "m" } }
   ]
 }`;
-    const expected = [error("WARNING.INVALID_BUTTON_POSITION", 4, 5, 4, 50)];
+    const expected = [error("WARNING.INVALID_BUTTON_POSITION", 4, 5, 4, 51)];
 
     const result = linter(json, [rule]);
 

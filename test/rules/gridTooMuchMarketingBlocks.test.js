@@ -36,7 +36,7 @@ describe("grid-too-much-marketing-blocks", () => {
     }
   ]
 }`;
-    const expected = [error("GRID.TOO_MUCH_MARKETING_BLOCKS", 1, 1, 32, 1)];
+    const expected = [error("GRID.TOO_MUCH_MARKETING_BLOCKS", 1, 1, 32, 2)];
 
     const result = linter(json, [rule]);
 
