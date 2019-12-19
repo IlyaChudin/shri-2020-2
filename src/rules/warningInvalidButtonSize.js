@@ -10,8 +10,8 @@ export default report => {
   return {
     enter: node => {
       const blockName = getProperty(node, "block");
-      if (blockName === "warning") {
-        scopes.push({ root: node, size: undefined });
+      if (blockName === "warning" && !getProperty(node, "elem")) {
+        scopes.push({ root: node, size: undefined, buttons: [] });
       } else if (blockName === "text" && scopes.length) {
         const textSize = getProperty(node, "mods", "size");
         if (textSize) {
@@ -21,19 +21,24 @@ export default report => {
           }
         }
       } else if (blockName === "button" && scopes.length) {
-        const buttonSize = getProperty(node, "mods", "size");
-        if (buttonSize) {
-          const scope = scopes[scopes.length - 1];
-          if (scope.size === sizes[sizes.length - 1] || buttonSize !== sizes[sizes.indexOf(scope.size) + 1]) {
-            report(error(code, text, node.loc));
-          }
-        }
+        const scope = scopes[scopes.length - 1];
+        scope.buttons.push(node);
       }
     },
     leave: node => {
       if (scopes.length) {
-        const { root } = scopes[scopes.length - 1];
+        const { root, size, buttons } = scopes[scopes.length - 1];
         if (node === root) {
+          if (size && buttons.length) {
+            buttons.forEach(x => {
+              const buttonSize = getProperty(x, "mods", "size");
+              if (buttonSize) {
+                if (size === sizes[sizes.length - 1] || buttonSize !== sizes[sizes.indexOf(size) + 1]) {
+                  report(error(code, text, x.loc));
+                }
+              }
+            });
+          }
           scopes.pop();
         }
       }

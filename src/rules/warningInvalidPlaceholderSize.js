@@ -10,7 +10,7 @@ export default report => {
   return {
     enter: node => {
       const blockName = getProperty(node, "block");
-      if (blockName === "warning") {
+      if (blockName === "warning" && !getProperty(node, "elem")) {
         scopes.push({ root: node });
       } else if (blockName === "placeholder" && scopes.length) {
         const size = getProperty(node, "mods", "size");

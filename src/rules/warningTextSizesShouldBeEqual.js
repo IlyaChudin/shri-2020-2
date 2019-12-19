@@ -9,8 +9,8 @@ export default report => {
   return {
     enter: node => {
       const blockName = getProperty(node, "block");
-      if (blockName === "warning") {
-        scopes.push({ root: node, size: undefined });
+      if (blockName === "warning" && !getProperty(node, "elem")) {
+        scopes.push({ root: node, size: undefined, haveErrors: false });
       } else if (blockName === "text" && scopes.length) {
         const mod = getProperty(node, "mods", "size");
         if (mod) {
@@ -18,15 +18,18 @@ export default report => {
           if (!scope.size) {
             scope.size = mod;
           } else if (mod !== scope.size) {
-            report(error(code, text, scope.root.loc));
+            scope.haveErrors = true;
           }
         }
       }
     },
     leave: node => {
       if (scopes.length) {
-        const { root } = scopes[scopes.length - 1];
+        const { root, haveErrors } = scopes[scopes.length - 1];
         if (node === root) {
+          if (haveErrors) {
+            report(error(code, text, root.loc));
+          }
           scopes.pop();
         }
       }

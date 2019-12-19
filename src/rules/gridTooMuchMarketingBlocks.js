@@ -16,9 +16,9 @@ export default report => {
           const size = getProperty(node, "mods", "m-columns");
           scopes.push({ root: node, size, fractionSize: 0, marketingColumnsCount: 0 });
         } else if (elemName === "fraction" && scopes.length) {
-          const size = getProperty(node, "elemMods", "m-col");
+          const fractionSize = getProperty(node, "elemMods", "m-col");
           const scope = scopes[scopes.length - 1];
-          scope.fractionSize = Number(size);
+          scope.fractionSize = Number(fractionSize);
         }
       } else if (marketingBlocks.includes(blockName) && !elemName && scopes.length) {
         const scope = scopes[scopes.length - 1];

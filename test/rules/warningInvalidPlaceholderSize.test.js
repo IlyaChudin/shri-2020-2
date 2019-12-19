@@ -7,10 +7,49 @@ describe("warningInvalidPlaceholderSize", () => {
     const json = `{
   "block": "warning",
   "content": [
-    { "block": "placeholder", "mods": { "size": "xl" } }
+    {
+      "block": "placeholder",
+      "mods": {
+        "size": "xl"
+      }
+    },
+    {
+      "block": "placeholder",
+      "mods": {
+        "size": "xxl"
+      }
+    },
+    {
+      "block": "warning",
+      "elem": "content",
+      "content": [
+        {
+          "block": "placeholder",
+          "mods": {
+            "size": "xl"
+          }
+        }
+      ]
+    },
+    {
+      "block": "test",
+      "content": [
+        {
+          "block": "placeholder",
+          "mods": {
+            "size": "xs"
+          }
+        }
+      ]
+    }
   ]
 }`;
-    const expected = [error("WARNING.INVALID_PLACEHOLDER_SIZE", 4, 5, 4, 57)];
+    const expected = [
+      error("WARNING.INVALID_PLACEHOLDER_SIZE", 4, 5, 9, 6),
+      error("WARNING.INVALID_PLACEHOLDER_SIZE", 10, 5, 15, 6),
+      error("WARNING.INVALID_PLACEHOLDER_SIZE", 20, 9, 25, 10),
+      error("WARNING.INVALID_PLACEHOLDER_SIZE", 31, 9, 36, 10)
+    ];
 
     const result = linter(json, [rule]);
 
@@ -21,7 +60,41 @@ describe("warningInvalidPlaceholderSize", () => {
     const json = `{
   "block": "warning",
   "content": [
-    { "block": "placeholder", "mods": { "size": "m" } }
+    {
+      "block": "placeholder",
+      "mods": {
+        "size": "s"
+      }
+    },
+    {
+      "block": "placeholder",
+      "mods": {
+        "size": "m"
+      }
+    },
+    {
+      "block": "warning",
+      "elem": "content",
+      "content": [
+        {
+          "block": "placeholder",
+          "mods": {
+            "size": "m"
+          }
+        }
+      ]
+    },
+    {
+      "block": "test",
+      "content": [
+        {
+          "block": "placeholder",
+          "mods": {
+            "size": "l"
+          }
+        }
+      ]
+    }
   ]
 }`;
 

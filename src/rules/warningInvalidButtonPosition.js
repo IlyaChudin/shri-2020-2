@@ -9,7 +9,7 @@ export default report => {
   return {
     enter: node => {
       const blockName = getProperty(node, "block");
-      if (blockName === "warning") {
+      if (blockName === "warning" && !getProperty(node, "elem")) {
         scopes.push({ root: node, buttons: [] });
       } else if (scopes.length) {
         const { buttons } = scopes[scopes.length - 1];

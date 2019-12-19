@@ -3041,10 +3041,11 @@
 	    enter: function enter(node) {
 	      var blockName = getProperty(node, "block");
 
-	      if (blockName === "warning") {
+	      if (blockName === "warning" && !getProperty(node, "elem")) {
 	        scopes.push({
 	          root: node,
-	          size: undefined
+	          size: undefined,
+	          haveErrors: false
 	        });
 	      } else if (blockName === "text" && scopes.length) {
 	        var mod = getProperty(node, "mods", "size");
@@ -3055,16 +3056,22 @@
 	          if (!scope.size) {
 	            scope.size = mod;
 	          } else if (mod !== scope.size) {
-	            report(error(code$3, text$3, scope.root.loc));
+	            scope.haveErrors = true;
 	          }
 	        }
 	      }
 	    },
 	    leave: function leave(node) {
 	      if (scopes.length) {
-	        var root = scopes[scopes.length - 1].root;
+	        var _scopes = scopes[scopes.length - 1],
+	            root = _scopes.root,
+	            haveErrors = _scopes.haveErrors;
 
 	        if (node === root) {
+	          if (haveErrors) {
+	            report(error(code$3, text$3, root.loc));
+	          }
+
 	          scopes.pop();
 	        }
 	      }
@@ -3081,10 +3088,11 @@
 	    enter: function enter(node) {
 	      var blockName = getProperty(node, "block");
 
-	      if (blockName === "warning") {
+	      if (blockName === "warning" && !getProperty(node, "elem")) {
 	        scopes.push({
 	          root: node,
-	          size: undefined
+	          size: undefined,
+	          buttons: []
 	        });
 	      } else if (blockName === "text" && scopes.length) {
 	        var textSize = getProperty(node, "mods", "size");
@@ -3097,22 +3105,31 @@
 	          }
 	        }
 	      } else if (blockName === "button" && scopes.length) {
-	        var buttonSize = getProperty(node, "mods", "size");
+	        var _scope = scopes[scopes.length - 1];
 
-	        if (buttonSize) {
-	          var _scope = scopes[scopes.length - 1];
-
-	          if (_scope.size === sizes[sizes.length - 1] || buttonSize !== sizes[sizes.indexOf(_scope.size) + 1]) {
-	            report(error(code$4, text$4, node.loc));
-	          }
-	        }
+	        _scope.buttons.push(node);
 	      }
 	    },
 	    leave: function leave(node) {
 	      if (scopes.length) {
-	        var root = scopes[scopes.length - 1].root;
+	        var _scopes = scopes[scopes.length - 1],
+	            root = _scopes.root,
+	            size = _scopes.size,
+	            buttons = _scopes.buttons;
 
 	        if (node === root) {
+	          if (size && buttons.length) {
+	            buttons.forEach(function (x) {
+	              var buttonSize = getProperty(x, "mods", "size");
+
+	              if (buttonSize) {
+	                if (size === sizes[sizes.length - 1] || buttonSize !== sizes[sizes.indexOf(size) + 1]) {
+	                  report(error(code$4, text$4, x.loc));
+	                }
+	              }
+	            });
+	          }
+
 	          scopes.pop();
 	        }
 	      }
@@ -3128,7 +3145,7 @@
 	    enter: function enter(node) {
 	      var blockName = getProperty(node, "block");
 
-	      if (blockName === "warning") {
+	      if (blockName === "warning" && !getProperty(node, "elem")) {
 	        scopes.push({
 	          root: node,
 	          buttons: []
@@ -3167,7 +3184,7 @@
 	    enter: function enter(node) {
 	      var blockName = getProperty(node, "block");
 
-	      if (blockName === "warning") {
+	      if (blockName === "warning" && !getProperty(node, "elem")) {
 	        scopes.push({
 	          root: node
 	        });
@@ -3211,10 +3228,9 @@
 	            marketingColumnsCount: 0
 	          });
 	        } else if (elemName === "fraction" && scopes.length) {
-	          var _size = getProperty(node, "elemMods", "m-col");
-
+	          var fractionSize = getProperty(node, "elemMods", "m-col");
 	          var scope = scopes[scopes.length - 1];
-	          scope.fractionSize = Number(_size);
+	          scope.fractionSize = Number(fractionSize);
 	        }
 	      } else if (marketingBlocks.includes(blockName) && !elemName && scopes.length) {
 	        var _scope = scopes[scopes.length - 1];
