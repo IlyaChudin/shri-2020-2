@@ -18,6 +18,6 @@ describe("gridTooMuchMarketingBlocks", () => {
 
     const result = linter(json, [rule]);
 
-    expect(result.length).toBe(0);
+    expect(result).toHaveLength(0);
   });
 });

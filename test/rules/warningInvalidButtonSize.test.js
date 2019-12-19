@@ -39,7 +39,7 @@ describe("warningInvalidButtonSize", () => {
 
     const result = linter(json, [rule]);
 
-    expect(result.length).toBe(0);
+    expect(result).toHaveLength(0);
   });
 
   test("should return empty array when no buttons in warning block", () => {
@@ -47,6 +47,6 @@ describe("warningInvalidButtonSize", () => {
 
     const result = linter(json, [rule]);
 
-    expect(result.length).toBe(0);
+    expect(result).toHaveLength(0);
   });
 });

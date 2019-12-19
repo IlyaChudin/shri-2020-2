@@ -22,6 +22,6 @@ describe("textSeveralH1", () => {
 
     const result = linter(json, [rule]);
 
-    expect(result.length).toBe(0);
+    expect(result).toHaveLength(0);
   });
 });

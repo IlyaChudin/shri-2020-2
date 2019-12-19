@@ -31,7 +31,7 @@ describe("getProperty", () => {
 
     const result = getProperty(jsonToAst(json), "mods", "size");
 
-    expect(result).toBe(undefined);
+    expect(result).toBeUndefined();
   });
 
   test("should return undefined when node is not Object", () => {
@@ -39,6 +39,6 @@ describe("getProperty", () => {
 
     const result = getProperty(jsonToAst(json), "mods", "type");
 
-    expect(result).toBe(undefined);
+    expect(result).toBeUndefined();
   });
 });

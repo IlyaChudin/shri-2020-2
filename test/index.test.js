@@ -8,7 +8,7 @@ describe("lint", () => {
 
     const result = lint(json);
 
-    expect(result.length).toBe(0);
+    expect(result).toHaveLength(0);
   });
 
   test("should return empty array when passed json with no affected blocks", () => {
@@ -16,7 +16,7 @@ describe("lint", () => {
 
     const result = lint(json);
 
-    expect(result.length).toBe(0);
+    expect(result).toHaveLength(0);
   });
 
   test("should return empty array when passed bemjson without lint errors", () => {
@@ -24,7 +24,7 @@ describe("lint", () => {
 
     const result = lint(json);
 
-    expect(result.length).toBe(0);
+    expect(result).toHaveLength(0);
   });
 
   test("should return empty array when passed bemjson with lint errors", () => {

@@ -6,6 +6,6 @@ describe("linter", () => {
 
     const result = linter(json, []);
 
-    expect(result).toBe(undefined);
+    expect(result).toBeUndefined();
   });
 });
