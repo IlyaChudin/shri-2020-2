@@ -10,9 +10,5 @@ export default {
     name: "lint",
     extend: true
   },
-  plugins: [resolve(), commonjs(), babel()],
-  watch: {
-    include: "src/**",
-    exclude: "src/**/*.test.js"
-  }
+  plugins: [resolve(), commonjs(), babel()]
 };
