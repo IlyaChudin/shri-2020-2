@@ -1,0 +1,40 @@
+{
+  "block": "warning",
+  "content": [
+    {
+      "block": "placeholder",
+      "mods": {
+        "size": "s"
+      }
+    },
+    {
+      "block": "placeholder",
+      "mods": {
+        "size": "m"
+      }
+    },
+    {
+      "block": "warning",
+      "elem": "content",
+      "content": [
+        {
+          "block": "placeholder",
+          "mods": {
+            "size": "m"
+          }
+        }
+      ]
+    },
+    {
+      "block": "test",
+      "content": [
+        {
+          "block": "placeholder",
+          "mods": {
+            "size": "l"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "block": "warning",
+  "content": [
+    {
+      "block": "text",
+      "mods": {
+        "size": "l"
+      }
+    },
+    {
+      "block": "text",
+      "mods": {
+        "size": "s"
+      }
+    },
+    {
+      "block": "warning",
+      "elem" : "content",
+      "content": [
+        {
+          "block": "text",
+          "mods": {
+            "size": "xl"
+          }
+        }
+      ]
+    },
+    {
+      "block": "test",
+      "content": [
+        {
+          "block": "text",
+          "mods": {
+            "size": "m"
+          }
+        }
+      ]
+    }
+  ]
+}

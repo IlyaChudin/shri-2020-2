@@ -1,7 +1,7 @@
 import jsonToAst from "json-to-ast";
 import { getProperty } from "../../src/helpers/ast";
 
-describe("getNested", () => {
+describe("getProperty", () => {
   test("should return first level property", () => {
     const json = `{ "block": "text", "mods": { "type": "h1" } }`;
 

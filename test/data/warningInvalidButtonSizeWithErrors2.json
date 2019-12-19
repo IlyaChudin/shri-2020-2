@@ -1,0 +1,29 @@
+{
+  "block": "warning",
+  "content": [
+    {
+      "block": "warning",
+      "elem": "content",
+      "content": [
+        {
+          "block": "text",
+          "mods": {
+            "size": "xl"
+          }
+        }
+      ]
+    },
+    {
+      "block": "warning",
+      "elem": "footer",
+      "content": [
+        {
+          "block": "button",
+          "mods": {
+            "size": "s"
+          }
+        }
+      ]
+    }
+  ]
+}

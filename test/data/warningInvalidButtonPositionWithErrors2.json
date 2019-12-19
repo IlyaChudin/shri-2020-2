@@ -1,0 +1,23 @@
+{
+  "block": "warning",
+  "content": [
+    {
+      "block": "warning",
+      "elem": "content",
+      "content": [
+        {
+          "block": "button"
+        }
+      ]
+    },
+    {
+      "block": "warning",
+      "elem": "footer",
+      "content": [
+        {
+          "block": "placeholder"
+        }
+      ]
+    }
+  ]
+}

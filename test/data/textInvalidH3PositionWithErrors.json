@@ -1,0 +1,95 @@
+[
+  {
+    "block": "test",
+    "content": [
+      {
+        "block": "text",
+        "mods": {
+          "type": "h3"
+        }
+      },
+      {
+        "block": "text",
+        "mods": {
+          "type": "h2"
+        }
+      },
+      {
+        "block": "text",
+        "mods": {
+          "type": "h3"
+        }
+      }
+    ]
+  },
+  {
+    "block": "test",
+    "content": [
+      {
+        "block": "text",
+        "mods": {
+          "type": "h2"
+        }
+      },
+      {
+        "block": "text",
+        "mods": {
+          "type": "h3"
+        }
+      }
+    ]
+  },
+  {
+    "block": "text",
+    "mods": {
+      "type": "h2"
+    }
+  },
+  {
+    "block": "text",
+    "mods": {
+      "type": "h3"
+    }
+  },
+  {
+    "block": "test",
+    "content": [
+      {
+        "block": "text",
+        "mods": {
+          "type": "h3"
+        }
+      },
+      {
+        "block": "test",
+        "elem": "deep",
+        "content": [
+          {
+            "block": "text",
+            "mods": {
+              "type": "h2"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "block": "test",
+    "elem": "content",
+    "mix": [
+      {
+        "block": "text",
+        "mods": {
+          "type": "h3"
+        }
+      }
+    ]
+  },
+  {
+    "block": "text",
+    "mods": {
+      "type": "h2"
+    }
+  }
+]

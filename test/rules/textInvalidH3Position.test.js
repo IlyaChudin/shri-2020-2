@@ -1,104 +1,11 @@
+import fs from "fs";
 import linter from "../../src/linter";
 import rule from "../../src/rules/textInvalidH3Position";
 import error from "../error";
 
 describe("textInvalidH3Position", () => {
   test("should return error when h3 appears before h2", () => {
-    const json = `[
-  {
-    "block": "test",
-    "content": [
-      {
-        "block": "text",
-        "mods": {
-          "type": "h3"
-        }
-      },
-      {
-        "block": "text",
-        "mods": {
-          "type": "h2"
-        }
-      },
-      {
-        "block": "text",
-        "mods": {
-          "type": "h3"
-        }
-      }
-    ]
-  },
-  {
-    "block": "test",
-    "content": [
-      {
-        "block": "text",
-        "mods": {
-          "type": "h2"
-        }
-      },
-      {
-        "block": "text",
-        "mods": {
-          "type": "h3"
-        }
-      }
-    ]
-  },
-  {
-    "block": "text",
-    "mods": {
-      "type": "h2"
-    }
-  },
-  {
-    "block": "text",
-    "mods": {
-      "type": "h3"
-    }
-  },
-  {
-    "block": "test",
-    "content": [
-      {
-        "block": "text",
-        "mods": {
-          "type": "h3"
-        }
-      },
-      {
-        "block": "test",
-        "elem": "deep",
-        "content": [
-          {
-            "block": "text",
-            "mods": {
-              "type": "h2"
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "block": "test",
-    "elem": "content",
-    "mix": [
-      {
-        "block": "text",
-        "mods": {
-          "type": "h3"
-        }
-      }
-    ]
-  },
-  {
-    "block": "text",
-    "mods": {
-      "type": "h2"
-    }
-  }
-]`;
+    const json = fs.readFileSync("test/data/textInvalidH3PositionWithErrors.json", "utf8");
     const expected = [
       error("TEXT.INVALID_H3_POSITION", 5, 7, 10, 8),
       error("TEXT.INVALID_H3_POSITION", 57, 7, 62, 8),
@@ -112,60 +19,8 @@ describe("textInvalidH3Position", () => {
   });
 
   test("should return empty array when h3 not appears before h2", () => {
-    const json = `[
-  {
-    "block": "test",
-    "content": [
-      {
-        "block": "text",
-        "mods": {
-          "type": "h2"
-        }
-      },
-      {
-        "block": "text",
-        "mods": {
-          "type": "h3"
-        }
-      }
-    ]
-  },
-  {
-    "block": "text",
-    "mods": {
-      "type": "h2"
-    }
-  },
-  {
-    "block": "text",
-    "mods": {
-      "type": "h3"
-    }
-  },
-  {
-    "block": "test",
-    "content": [
-      {
-        "block": "text",
-        "mods": {
-          "type": "h2"
-        }
-      },
-      {
-        "block": "test",
-        "elem": "deep",
-        "content": [
-          {
-            "block": "text",
-            "mods": {
-              "type": "h3"
-            }
-          }
-        ]
-      }
-    ]
-  }
-]`;
+    const json = fs.readFileSync("test/data/textInvalidH3PositionWithoutErrors.json", "utf8");
+
     const result = linter(json, [rule]);
 
     expect(result.length).toBe(0);

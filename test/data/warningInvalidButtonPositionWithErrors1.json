@@ -1,0 +1,30 @@
+[
+  {
+    "block": "warning",
+    "content": [
+      {
+        "block": "button"
+      },
+      {
+        "block": "placeholder"
+      },
+      {
+        "block": "button"
+      }
+    ]
+  },
+  {
+    "block": "warning",
+    "content": [
+      {
+        "block": "button"
+      },
+      {
+        "block": "placeholder"
+      },
+      {
+        "block": "button"
+      }
+    ]
+  }
+]

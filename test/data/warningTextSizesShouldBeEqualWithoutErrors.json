@@ -1,0 +1,46 @@
+{
+  "block": "warning",
+  "content": [
+    {
+      "block": "text",
+      "mods": {
+        "type": "h2"
+      }
+    },
+    {
+      "block": "text",
+      "mods": {
+        "size": "l"
+      }
+    },
+    {
+      "block": "text",
+      "mods": {
+        "size": "l"
+      }
+    },
+    {
+      "block": "warning",
+      "elem" : "content",
+      "content": [
+        {
+          "block": "text",
+          "mods": {
+            "size": "l"
+          }
+        }
+      ]
+    },
+    {
+      "block": "warning",
+      "content": [
+        {
+          "block": "text",
+          "mods": {
+            "size": "xl"
+          }
+        }
+      ]
+    }
+  ]
+}

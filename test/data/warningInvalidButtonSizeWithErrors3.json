@@ -1,0 +1,17 @@
+{
+  "block": "warning",
+  "content": [
+    {
+      "block": "text",
+      "mods": {
+        "size": "xxl"
+      }
+    },
+    {
+      "block": "button",
+      "mods": {
+        "size": "xxl"
+      }
+    }
+  ]
+}

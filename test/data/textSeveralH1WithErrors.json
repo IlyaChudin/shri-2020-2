@@ -1,0 +1,36 @@
+[
+  {
+    "block": "text",
+    "mods": {
+      "type": "h1"
+    }
+  },
+  {
+    "block": "text",
+    "mods": {
+      "type": "h1"
+    }
+  },
+  {
+    "block": "test",
+    "content": [
+      {
+        "block": "text",
+        "mods": {
+          "type": "h1"
+        }
+      }
+    ]
+  },
+  {
+    "block": "test",
+    "mix": [
+      {
+        "block": "text",
+        "mods": {
+          "type": "h1"
+        }
+      }
+    ]
+  }
+]

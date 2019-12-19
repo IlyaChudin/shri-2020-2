@@ -1,0 +1,26 @@
+{
+  "block": "warning",
+  "content": [
+    {
+      "block": "placeholder"
+    },
+    {
+      "block": "warning",
+      "elem": "content",
+      "content": [
+        {
+          "block": "placeholder"
+        }
+      ]
+    },
+    {
+      "block": "warning",
+      "elem": "footer",
+      "content": [
+        {
+          "block": "button"
+        }
+      ]
+    }
+  ]
+}
