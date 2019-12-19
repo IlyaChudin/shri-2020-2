@@ -7,21 +7,44 @@ describe("textSeveralH1", () => {
     const json = `[
   {
     "block": "text",
-    "mods": { "type": "h1" }
-  },
-  {
-    "block": "text",
-    "mods": { "type": "h2" }
-  },
-  {
-    "block": "text",
-    "content": {
-      "block": "text",
-      "mods": { "type": "h1" }
+    "mods": {
+      "type": "h1"
     }
+  },
+  {
+    "block": "text",
+    "mods": {
+      "type": "h1"
+    }
+  },
+  {
+    "block": "test",
+    "content": [
+      {
+        "block": "text",
+        "mods": {
+          "type": "h1"
+        }
+      }
+    ]
+  },
+  {
+    "block": "test",
+    "mix": [
+      {
+        "block": "text",
+        "mods": {
+          "type": "h1"
+        }
+      }
+    ]
   }
 ]`;
-    const expected = [error("TEXT.SEVERAL_H1", 12, 16, 15, 6)];
+    const expected = [
+      error("TEXT.SEVERAL_H1", 8, 3, 13, 4),
+      error("TEXT.SEVERAL_H1", 17, 7, 22, 8),
+      error("TEXT.SEVERAL_H1", 28, 7, 33, 8)
+    ];
 
     const result = linter(json, [rule]);
 
@@ -32,17 +55,23 @@ describe("textSeveralH1", () => {
     const json = `[
   {
     "block": "text",
-    "mods": { "type": "h1" }
+    "mods": {
+      "type": "h1"
+    }
   },
   {
     "block": "text",
-    "mods": { "type": "h2" }
+    "mods": {
+      "type": "h2"
+    }
   },
   {
     "block": "text",
     "content": {
       "block": "text",
-      "mods": { "type": "h3" }
+      "mods": {
+        "type": "h3"
+      }
     }
   }
 ]`;

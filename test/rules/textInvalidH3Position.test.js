@@ -81,6 +81,18 @@ describe("textInvalidH3Position", () => {
     ]
   },
   {
+    "block": "test",
+    "elem": "content",
+    "mix": [
+      {
+        "block": "text",
+        "mods": {
+          "type": "h3"
+        }
+      }
+    ]
+  },
+  {
     "block": "text",
     "mods": {
       "type": "h2"
@@ -90,7 +102,8 @@ describe("textInvalidH3Position", () => {
     const expected = [
       error("TEXT.INVALID_H3_POSITION", 5, 7, 10, 8),
       error("TEXT.INVALID_H3_POSITION", 57, 7, 62, 8),
-      error("TEXT.INVALID_H3_POSITION", 48, 3, 53, 4)
+      error("TEXT.INVALID_H3_POSITION", 48, 3, 53, 4),
+      error("TEXT.INVALID_H3_POSITION", 81, 7, 86, 8)
     ];
 
     const result = linter(json, [rule]);
